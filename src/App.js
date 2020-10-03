@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -13,38 +13,44 @@ import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import UserRegister from './components/UserRegister/UserRegister';
 import AdminRegister from './components/AdminRegister/AdminRegister';
 import AdminEvent from './components/AdminEvent/AdminEvent';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/registrationForm">
-            <RegistrationForm />
-          </Route>
-          <Route path="/userRegister">
-            <UserRegister />
-          </Route>
-          <Route path="/adminRegister">
-            <AdminRegister />
-          </Route>
-          <Route path="/adminEvent">
-            <AdminEvent />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </Router>
+      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+        <Router>
+          <Switch>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/registrationForm">
+              <RegistrationForm />
+            </PrivateRoute>
+            <PrivateRoute path="/userRegister">
+              <UserRegister />
+            </PrivateRoute>
+            <PrivateRoute path="/adminRegister">
+              <AdminRegister />
+            </PrivateRoute>
+            <PrivateRoute path="/adminEvent">
+              <AdminEvent />
+            </PrivateRoute>
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </Router>
+      </UserContext.Provider>
     </div>
   );
 }
