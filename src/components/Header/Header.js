@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Header.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Header = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
         <Container fluid>
             <Container>
@@ -16,8 +18,9 @@ const Header = () => {
                             <Link to="/" className=" navLink font-weight-bold">Donation</Link>
                             <Link to="/" className="navLink font-weight-bold">Events</Link>
                             <Link to="/" className="navLink font-weight-bold">Blog</Link>
-                            <button className="navLink btn btn-primary pr-4 pl-4">Register</button>
-                            <button className="navLink btn btn-dark pr-4 pl-4">Admin</button>
+                            <Link to="/userRegister" className="navLink font-weight-bold">{loggedInUser.name}</Link>
+                            {!loggedInUser.isSiggnedIn && <Link to="/login" className="navLink btn btn-primary pr-4 pl-4">Register</Link>}
+                            {!loggedInUser.isSiggnedIn && <Link to="/login" className="navLink btn btn-dark pr-4 pl-4">Admin</Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

@@ -33,7 +33,7 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <PrivateRoute path="/registrationForm">
+            <PrivateRoute path="/registrationForm/:eventTitle">
               <RegistrationForm />
             </PrivateRoute>
             <PrivateRoute path="/userRegister">

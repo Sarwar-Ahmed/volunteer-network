@@ -35,7 +35,6 @@ const Login = () => {
             }
             setUser(signedInUser);
             setLoggedInUser(signedInUser);
-            console.log(user);
             history.replace(from);
           })
           .catch(error => {
@@ -53,7 +52,7 @@ const Login = () => {
             <div className="w-50 mx-auto border p-5 bg-white">
                 <h3 className="p-3">Login With</h3>
                 <div className="border rounded p-1 pl-5 pr-5 ">
-                    <Link onClick={googleSingIn} className="font-weight-bold text-dark"><span><img src="https://iili.io/2xw5TQ.png" alt=""className="icon m-1"/></span>Continue with Google</Link>
+                    <button onClick={googleSingIn} className="btn font-weight-bold text-dark"><span><img src="https://iili.io/2xw5TQ.png" alt=""className="icon m-1"/></span>Continue with Google</button>
                 </div>
                 <p className="p-2">Don't have an account? <Link to="">Create an account</Link></p>
 

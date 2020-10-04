@@ -34,7 +34,7 @@ const Home = () => {
                         {
                             event.map((event) =>
                                 <div className="col-md-3 p-3" key={event._id}>
-                                    <Link to="/registrationForm">
+                                    <Link to={`/registrationForm/${event.title}`}>
                                         <div className="eventImg">
                                             <img src={event.image} alt="" className="w-100" />
                                         </div>
