@@ -10,7 +10,7 @@ const UserRegister = () => {
     const history = useHistory();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userEvents?email=`+loggedInUser.email, {
+        fetch(`https://volunteer-network-by-sarwar.herokuapp.com/userEvents?email=`+loggedInUser.email, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const UserRegister = () => {
 
     const deleteEvent = (id) => {
         history.push(`/confirmDeleteForUser`);
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://volunteer-network-by-sarwar.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())

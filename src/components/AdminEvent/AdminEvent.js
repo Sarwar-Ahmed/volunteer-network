@@ -11,7 +11,7 @@ const AdminEvent = () => {
     const { register, handleSubmit, watch, errors } = useForm();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/adminEvents`)
+        fetch(`https://volunteer-network-by-sarwar.herokuapp.com/adminEvents`)
             .then(res => res.json())
             .then(data => {
                 setAdminEvent(data);
@@ -20,7 +20,7 @@ const AdminEvent = () => {
 
     const deleteEvent = (id) => {
         history.push(`/confirmDeleteForAdmin`);
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://volunteer-network-by-sarwar.herokuapp.com/delete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -31,7 +31,7 @@ const AdminEvent = () => {
     const onSubmit = (data) =>{
         history.push(`/confirmAddEventFromAdmin`);
 
-        fetch('http://localhost:5000/events', {
+        fetch('https://volunteer-network-by-sarwar.herokuapp.com/events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ const RegistrationForm = () => {
     const onSubmit = (data) =>{
         history.push(`/confirmRegistration`);
 
-        fetch('http://localhost:5000/addUserEvent', {
+        fetch('https://volunteer-network-by-sarwar.herokuapp.com/addUserEvent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
