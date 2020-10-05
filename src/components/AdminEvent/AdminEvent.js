@@ -29,9 +29,9 @@ const AdminEvent = () => {
             })
     }
     const onSubmit = (data) =>{
-        history.push(`/`);
+        history.push(`/confirmAddEventFromAdmin`);
 
-        fetch('http://localhost:5000/addUserEvent', {
+        fetch('http://localhost:5000/events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -87,17 +87,26 @@ const AdminEvent = () => {
                                 <h2 className="bg-white p-3">Add event</h2>
                                 <div style={{ borderRadius: 20 }} className="p-5 bg-white">
                                     <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
+                                        <input name="title" className="form-control" defaultValue="" ref={register({ required: true })} placeholder="Event Title" />
+                                        {errors.title && <span className="error">Event Title is required</span>}
+                                        <br />
+
+                                        <input name="color" className="form-control" defaultValue="" ref={register({ required: true })} placeholder="Background color" />
+                                        {errors.color && <span className="error">Event Background color is required</span>}
+                                        <br /> 
+
                                         <input type="date" name="date" className="form-control" ref={register({ required: true })} placeholder="Date" />
                                         {errors.date && <span className="error">Date is required</span>}
                                         <br />
 
-                                        <input name="description" className="form-control" ref={register({ required: true })} placeholder="Description" />
+                                        <input name="description" className="form-control" style={{height: 200}} ref={register({ required: true })} placeholder="Description" />
                                         {errors.description && <span className="error">Description is required</span>}
                                         <br />
 
-                                        <input name="eventTitle" className="form-control" defaultValue="" ref={register({ required: true })} placeholder="Event Title" />
+                                        <input name="image" className="form-control" defaultValue="" ref={register({ required: true })} placeholder="Image Url" />
                                         {errors.eventTitle && <span className="error">eventTitle is required</span>}
                                         <br />
+
                                         <button className="btn btn-primary" type="submit">Submit</button>
                                     </form>
                                 </div>

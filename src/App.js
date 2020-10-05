@@ -16,6 +16,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ConfirmDeleteForAdmin from './components/ConfirmDeleteForAdmin/ConfirmDeleteForAdmin';
 import ConfirmDeleteForUser from './components/ConfirmDeleteForUser/ConfirmDeleteForUser';
 import ConfirmRegistration from './components/ConfirmRegistration/ConfirmRegistration';
+import ConfirmAddEventFromAdmin from './components/ConfirmAddEventFromAdmin/ConfirmAddEventFromAdmin';
 
 export const UserContext = createContext();
 
@@ -52,6 +53,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute path="/confirmDeleteForUser">
               <ConfirmDeleteForUser />
+            </PrivateRoute>
+            <PrivateRoute path="/confirmAddEventFromAdmin">
+              <ConfirmAddEventFromAdmin />
             </PrivateRoute>
             <Route path="*">
               <NoMatch />
