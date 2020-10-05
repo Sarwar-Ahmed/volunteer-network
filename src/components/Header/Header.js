@@ -19,8 +19,10 @@ const Header = () => {
                             <Link to="/" className="navLink font-weight-bold">Events</Link>
                             <Link to="/" className="navLink font-weight-bold">Blog</Link>
                             <Link to="/userRegister" className="navLink font-weight-bold">{loggedInUser.name}</Link>
-                            {!loggedInUser.isSiggnedIn && <Link to="/login" className="navLink btn btn-primary pr-4 pl-4">Register</Link>}
-                            {!loggedInUser.isSiggnedIn && <Link to="/login" className="navLink btn btn-dark pr-4 pl-4">Admin</Link>}
+                            {loggedInUser.isSiggnedIn
+                            ? <button onClick={() => setLoggedInUser({})} to="/login" className="navLink btn btn-primary pr-4 pl-4">Logout</button>
+                            :<Link to="/login" className="navLink btn btn-primary pr-4 pl-4">Register</Link>}
+                            {!loggedInUser.isSiggnedIn && <Link to="/adminEvent" className="navLink btn btn-dark pr-4 pl-4">Admin</Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

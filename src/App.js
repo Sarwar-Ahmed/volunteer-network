@@ -11,9 +11,11 @@ import NoMatch from './components/NoMatch/NoMatch';
 import Login from './components/Login/Login';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import UserRegister from './components/UserRegister/UserRegister';
-import AdminRegister from './components/AdminRegister/AdminRegister';
 import AdminEvent from './components/AdminEvent/AdminEvent';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ConfirmDeleteForAdmin from './components/ConfirmDeleteForAdmin/ConfirmDeleteForAdmin';
+import ConfirmDeleteForUser from './components/ConfirmDeleteForUser/ConfirmDeleteForUser';
+import ConfirmRegistration from './components/ConfirmRegistration/ConfirmRegistration';
 
 export const UserContext = createContext();
 
@@ -39,11 +41,17 @@ function App() {
             <PrivateRoute path="/userRegister">
               <UserRegister />
             </PrivateRoute>
-            <PrivateRoute path="/adminRegister">
-              <AdminRegister />
-            </PrivateRoute>
             <PrivateRoute path="/adminEvent">
               <AdminEvent />
+            </PrivateRoute>
+            <PrivateRoute path="/confirmRegistration">
+              <ConfirmRegistration />
+            </PrivateRoute>
+            <PrivateRoute path="/confirmDeleteForAdmin">
+              <ConfirmDeleteForAdmin />
+            </PrivateRoute>
+            <PrivateRoute path="/confirmDeleteForUser">
+              <ConfirmDeleteForUser />
             </PrivateRoute>
             <Route path="*">
               <NoMatch />

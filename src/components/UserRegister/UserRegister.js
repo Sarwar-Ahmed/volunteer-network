@@ -1,32 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 import Header from '../Header/Header';
 
 const UserRegister = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [userRegistration, setUserRegistration] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userEvents`)
+        fetch(`http://localhost:5000/userEvents?email=`+loggedInUser.email, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
             setUserRegistration(data);
         })
     }, [])
+
+    const deleteEvent = (id) => {
+        history.push(`/confirmDeleteForUser`);
+        fetch(`http://localhost:5000/delete/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(result => {
+            alert('deleted successfully');
+        })
+    }
+
     return (
         <Container fluid className="userRegister">
             <Container>
                 <Header />
                 <div className="row">
                     {
-                        userRegistration.map(reg => 
-                            <div className="col-md-6 d-flex p-5 rounded">
+                        userRegistration.map(regUser => 
+                            <div className="col-md-6 d-flex p-5 rounded" key={regUser._id}>
                                 <div className="bg-white p-3">
                                     <img style={{width: 200}} src="https://iili.io/2W1Hkx.png" alt=""/>
                                 </div>
                                 <div className="bg-white p-3">
-                                    <h5>{reg.eventTitle}</h5>
-                                    <p>{(new Date(reg.date).toDateString('dd/MM/yyyy'))}</p>
-                                    <button className="btn btn-secondary">Cancel</button>
+                                    <h5>{regUser.eventTitle}</h5>
+                                    <p>{(new Date(regUser.date).toDateString('dd/MM/yyyy'))}</p>
+                                    <button onClick={() => deleteEvent(regUser._id)} className="btn btn-secondary">Cancel</button>
                                 </div>
                             </div>    
                         )

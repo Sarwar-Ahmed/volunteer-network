@@ -13,7 +13,7 @@ const RegistrationForm = () => {
     const { register, handleSubmit, watch, errors } = useForm();
 
     const onSubmit = (data) =>{
-        history.push(`/userRegister`);
+        history.push(`/confirmRegistration`);
 
         fetch('http://localhost:5000/addUserEvent', {
             method: 'POST',
